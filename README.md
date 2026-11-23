@@ -35,7 +35,21 @@
 
 ---
 
-Point FL Studio at your AirPods and you get crackles and notes that sound slightly out of tune. Detour leaves FL Studio on the Mac speakers, where it sounds right, silences the speakers, and sends the same sound to your AirPods. You hear your project the way it really sounds, in your headphones, and nothing changes inside FL Studio.
+## The problem
+
+You open FL Studio on your Mac, put your AirPods in, and your project sounds wrong:
+
+- **crackles and clicks** all over the mix, even on a single sample;
+- **notes slightly out of tune**: the pitch is off, sometimes wobbling;
+- the same project sounds **perfect on the MacBook speakers**.
+
+The usual fixes don't help. We tried each one: a bigger buffer, 48 kHz, input set to "none", an aggregate device, other FL audio settings. The sound stays broken, because the problem isn't a setting. When FL Studio's output is a pair of AirPods, it renders its audio badly, and AirPods pull audio in irregular bursts that anything following their clock inherits.
+
+There's a trap that makes it worse. FL Studio's **"Default audio device"** output follows the Mac's default, so FL switches to your AirPods every time they connect, even after you set it to the speakers.
+
+## The fix
+
+Detour leaves FL Studio on the Mac speakers, where it sounds right, silences the speakers, and sends the same sound to your AirPods at the right pitch, with no clicks. You hear your project the way it really sounds, in your headphones, and nothing changes inside FL Studio.
 
 > Detour is for listening, composing and mixing. Bluetooth always adds delay, so for recording vocals or playing in time, wired headphones are still the right tool.
 

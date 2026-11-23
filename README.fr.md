@@ -35,7 +35,21 @@
 
 ---
 
-Réglez la sortie de FL Studio sur vos AirPods et vous obtenez des craquements et des notes un peu fausses. Detour laisse FL Studio sur les haut-parleurs du Mac, où il sonne juste, coupe les haut-parleurs et envoie le même son dans vos AirPods. Vous entendez votre projet tel qu'il sonne vraiment, dans vos écouteurs, sans rien changer dans FL Studio.
+## Le problème
+
+Vous ouvrez FL Studio sur votre Mac, vous mettez vos AirPods, et votre projet sonne faux :
+
+- des **craquements et des clics** partout dans le mix, même sur un seul sample ;
+- des **notes un peu fausses** : la hauteur est décalée, parfois elle ondule ;
+- le même projet sonne **parfaitement sur les haut-parleurs du MacBook**.
+
+Les solutions habituelles n'y changent rien. Nous les avons toutes essayées : un buffer plus grand, 48 kHz, l'entrée sur « none », un périphérique agrégé, d'autres réglages audio de FL. Le son reste abîmé, parce que le problème n'est pas un réglage. Quand la sortie de FL Studio est une paire d'AirPods, il calcule mal son audio, et les AirPods tirent le son par à-coups irréguliers dont hérite tout ce qui suit leur horloge.
+
+Un piège aggrave les choses : la sortie **« Default audio device »** de FL Studio suit celle du Mac, donc FL repasse sur vos AirPods à chaque connexion, même après l'avoir réglé sur les haut-parleurs.
+
+## La solution
+
+Detour laisse FL Studio sur les haut-parleurs du Mac, où il sonne juste, coupe les haut-parleurs et envoie le même son dans vos AirPods, à la bonne hauteur et sans clics. Vous entendez votre projet tel qu'il sonne vraiment, dans vos écouteurs, sans rien changer dans FL Studio.
 
 > Detour sert à écouter, composer et mixer. Le Bluetooth ajoute toujours un délai : pour enregistrer une voix ou jouer en rythme, un casque filaire reste le bon outil.
 

@@ -78,6 +78,39 @@ concepts = {
         + '<path d="M390 512 q30 -110 60 0 t60 0 t60 0 t60 0" fill="none" stroke="#0F8F86" stroke-width="26" stroke-linecap="round"/>'),
 }
 
+# FL Studio x AirPods: FL's codes (its orange, step-sequencer pads, a fruit leaf) with a generic
+# stemmed earbud. No Image-Line logo, no Apple product drawing.
+def earbud(dx=0, dy=0, k=1.0, mesh="#2b2b30"):
+    head = "M330 300 C330 200 430 150 520 170 C620 192 660 280 640 360 C620 440 540 470 470 460 C390 450 330 390 330 300 Z"
+    stem = "M548 420 C576 412 604 420 612 448 L640 760 C644 800 614 822 584 822 C556 822 534 804 532 772 L520 470 C518 444 528 426 548 420 Z"
+    return (f'<g transform="translate({dx} {dy}) scale({k})">' + glass(stem) + glass(head)
+            + f'<ellipse cx="372" cy="318" rx="20" ry="64" transform="rotate(-24 372 318)" fill="{mesh}" fill-opacity=".6"/></g>')
+
+def pads(lit, y=850, color="#FF8A1F"):
+    out = ""
+    for i in range(4):
+        x = 150 + i * 190
+        on = i in lit
+        out += (f'<g filter="url(#shadow)"><rect x="{x}" y="{y}" width="150" height="110" rx="26" '
+                f'fill="{color if on else "#fff"}" fill-opacity="{1 if on else .18}"/>'
+                f'<rect x="{x}" y="{y}" width="150" height="110" rx="26" fill="none" stroke="url(#rim)" stroke-width="5"/></g>')
+    return out
+
+FL_ORANGE = [(0, "#FFB13B"), (1, "#F2591C")]
+FL_DARK = [(0, "#4A5058"), (1, "#22262B")]
+
+concepts.update({
+    # E: white glass earbud on FL orange
+    "e-orange-bud": icon(FL_ORANGE, earbud(dx=20, dy=40)),
+    # F: FL's dark UI grey, earbud above a row of step-sequencer pads (two lit orange)
+    "f-step-bud": icon(FL_DARK, earbud(dx=70, dy=-10, k=0.92, mesh="#FF8A1F") + pads({0, 2}, y=830)),
+    # G: the earbud grows a leaf like a fruit, on orange
+    "g-fruit-bud": icon(FL_ORANGE,
+        '<g filter="url(#shadow)"><path d="M560 210 C580 120 660 70 760 80 C750 170 680 230 560 210 Z" fill="#5BD15B"/>'
+        '<path d="M560 210 C620 160 680 120 740 96" fill="none" stroke="#2E9E3E" stroke-width="10" stroke-linecap="round"/></g>'
+        + earbud(dx=10, dy=70)),
+})
+
 out = pathlib.Path(__file__).parent
 for name, svg in concepts.items():
     (out / f"{name}.svg").write_text(svg)
