@@ -111,18 +111,7 @@ concepts.update({
         + earbud(dx=10, dy=70)),
 })
 
-out = pathlib.Path(__file__).parent
-for name, svg in concepts.items():
-    (out / f"{name}.svg").write_text(svg)
-
-cells = "".join(
-    f'<figure><img src="{n}.svg"><figcaption>{n.split("-")[0].upper()} · {n.split("-",1)[1]}</figcaption></figure>'
-    for n in concepts)
-for theme, bg, fg in [("dark", "#1c1c1e", "#f5f5f7"), ("light", "#ffffff", "#1d1d1f")]:
-    (out / f"sheet-{theme}.html").write_text(f"""<!doctype html><meta charset=utf-8>
-<style>body{{margin:0;background:{bg};color:{fg};font:600 26px -apple-system,sans-serif;display:grid;
-grid-template-columns:repeat(4,1fr);gap:40px;padding:60px}}figure{{margin:0;text-align:center}}
-img{{width:100%}}figcaption{{margin-top:14px;opacity:.8}}
-.small{{grid-column:1/-1;display:flex;gap:48px;justify-content:center;align-items:center}}
-.small img{{width:64px}}.small img.s32{{width:32px}}</style>
-{cells}<div class=small>{"".join(f'<img src="{n}.svg"><img class=s32 src="{n}.svg">' for n in concepts)}</div>""")
+if __name__ == "__main__":
+    out = pathlib.Path(__file__).parent
+    for name, svg in concepts.items():
+        (out / f"{name}.svg").write_text(svg)
