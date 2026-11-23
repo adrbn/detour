@@ -1,0 +1,81 @@
+{
+  "fill": {
+    "linear-gradient": [
+      "display-p3:0.95492,0.70720,0.32961,1.00000",
+      "display-p3:0.87980,0.39015,0.19964,1.00000"
+    ],
+    "orientation": {
+      "start": {
+        "x": 0.5,
+        "y": 0
+      },
+      "stop": {
+        "x": 0.5,
+        "y": 1
+      }
+    }
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "mesh.svg",
+          "name": "mesh"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.2
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.0
+      }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "earbud.svg",
+          "name": "earbud"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.25
+      }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "leaf.svg",
+          "name": "leaf"
+        },
+        {
+          "glass": true,
+          "image-name": "stalk.svg",
+          "name": "stalk"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.4
+      }
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS"
+    ]
+  }
+}

@@ -14,6 +14,17 @@ rm -rf "$APP" && mkdir -p "$APP/Contents/MacOS"
 cp .build/release/Detour "$APP/Contents/MacOS/Detour"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 
+# The icon is an Icon Composer document: actool renders it into Assets.car (Liquid Glass on
+# macOS 26+) plus an AppIcon.icns fallback. actool ships with Xcode 26, not the Command Line Tools.
+if xcrun --find actool >/dev/null 2>&1; then
+    mkdir -p "$APP/Contents/Resources"
+    xcrun actool Resources/AppIcon.icon --compile "$APP/Contents/Resources" \
+        --platform macosx --minimum-deployment-target 14.2 --app-icon AppIcon \
+        --output-partial-info-plist build/icon-partial.plist >/dev/null
+else
+    echo "warning: actool not found (it comes with Xcode 26), building without an icon"
+fi
+
 if [ -n "$SIGN_IDENTITY" ]; then
     codesign --force --options runtime --timestamp --sign "$SIGN_IDENTITY" "$APP"
 else
