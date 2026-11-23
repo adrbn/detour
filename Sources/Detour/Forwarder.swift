@@ -23,6 +23,8 @@ final class Forwarder: ObservableObject {
         /// The app itself plays on the headphones (FL's "Default audio device" follows the
         /// system output there), so it renders the broken audio we are trying to avoid.
         case appOnHeadphones(String)
+        /// macOS refused the capture: System Audio Recording is not allowed for Detour.
+        case needsPermission
         case failed(String)
     }
 
@@ -68,6 +70,11 @@ final class Forwarder: ObservableObject {
         reconcile()
     }
 
+    /// A forwarder frozen in one state, for the README snapshots: no timer, no audio.
+    init(previewing status: Status) {
+        self.status = status
+    }
+
     func reconcile() {
         processes = AudioProcess.all()
         outputs = OutputDevice.all()
@@ -109,7 +116,7 @@ final class Forwarder: ObservableObject {
         let err = AudioHardwareCreateProcessTap(description, &newTap)
         guard err == noErr else {
             // Most often: the System Audio Recording permission was refused.
-            fail("Could not capture the app (error \(err)). Allow Detour in System Settings › Privacy & Security › Screen & System Audio Recording.")
+            log.error("tap refused (error \(err, privacy: .public))"); teardown(); status = .needsPermission
             return false
         }
         tap = newTap
