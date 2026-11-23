@@ -83,12 +83,13 @@ struct DetourView: View {
         .frame(width: 300)
     }
 
-    /// A label on the left, a menu picker hugging its content on the right.
+    /// A label on the left, a menu picker on the right. Fixed width: a menu picker otherwise grows
+    /// to its longest item and pushes the row out of the menu; long names get an ellipsis instead.
     private func row(_ label: String, @ViewBuilder picker: () -> some View) -> some View {
         HStack(spacing: 12) {
             Text(label)
             Spacer(minLength: 0)
-            picker().pickerStyle(.menu).labelsHidden().fixedSize()
+            picker().pickerStyle(.menu).labelsHidden().frame(width: 200)
         }
     }
 
@@ -125,8 +126,10 @@ struct DetourView: View {
     }
 
     /// Apps that currently have audio, plus the saved one even when it is not running.
+    /// System services with no app name (audiomxd, CoreSpeech…) are left out.
     private var appChoices: [String] {
-        let running = forwarder.processes.map(\.bundleID).filter { $0 != Bundle.main.bundleIdentifier }
+        let running = forwarder.processes.map(\.bundleID)
+            .filter { $0 != Bundle.main.bundleIdentifier && appName($0) != $0 }
         return Array(Set(running + [appBundleID])).sorted { appName($0) < appName($1) }
     }
 
