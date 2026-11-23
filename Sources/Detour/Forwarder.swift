@@ -128,7 +128,7 @@ final class Forwarder: ObservableObject {
 
     private func makeCapture() -> Bool {
         guard let speakers = OutputDevice.all().first(where: \.isBuiltIn) else {
-            fail("No built-in output to clock the capture from."); return false
+            fail(String(localized: "No built-in output to clock the capture from.")); return false
         }
         let description: [String: Any] = [
             kAudioAggregateDeviceNameKey: "Detour capture",
@@ -142,7 +142,7 @@ final class Forwarder: ObservableObject {
         ]
         var device: AudioObjectID = 0
         var err = AudioHardwareCreateAggregateDevice(description as CFDictionary, &device)
-        guard err == noErr else { fail("Could not capture the app (error \(err))."); return false }
+        guard err == noErr else { fail(String(localized: "Could not capture the app (error \(Int(err))).")); return false }
 
         let bridge = bridge
         var proc: AudioDeviceIOProcID?
@@ -161,7 +161,7 @@ final class Forwarder: ObservableObject {
         guard err == noErr else {
             if let proc { AudioDeviceDestroyIOProcID(device, proc) }
             AudioHardwareDestroyAggregateDevice(device)
-            fail("Could not start the capture (error \(err)).")
+            fail(String(localized: "Could not start the capture (error \(Int(err)))."))
             return false
         }
         capture = device
@@ -191,7 +191,7 @@ final class Forwarder: ObservableObject {
         if err == noErr { err = AudioDeviceStart(output.id, proc) }
         guard err == noErr else {
             if let proc { AudioDeviceDestroyIOProcID(output.id, proc) }
-            fail("Could not start playback on \(output.name) (error \(err)).")
+            fail(String(localized: "Could not start playback on \(output.name) (error \(Int(err)))."))
             return false
         }
         playbackProc = proc

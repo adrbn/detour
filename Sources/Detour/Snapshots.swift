@@ -25,7 +25,7 @@ enum Snapshots {
     }
 
     /// Opens one window per state and appearance and lists them in `windows.txt`
-    /// ("name windowNumber" per line). The app quits by itself after 8 s.
+    /// ("name windowNumber" per line). The app quits by itself after 2 minutes (the script kills it sooner).
     static func render(to folder: URL) {
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         var lines: [String] = []
@@ -46,7 +46,7 @@ enum Snapshots {
         }
         try? (lines.joined(separator: "\n") + "\n").write(to: folder.appendingPathComponent("windows.txt"),
                                                          atomically: true, encoding: .utf8)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8) { exit(0) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 120) { exit(0) }
     }
 
     private static var windows: [NSWindow] = []

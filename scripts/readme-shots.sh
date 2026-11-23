@@ -2,14 +2,19 @@
 # Captures the real Detour menu view in its six states, light and dark, into docs/assets/readme-src/states.
 # The app opens the windows behind the desktop (--render-states); screencapture grabs each one by its id.
 # -AppleAccentColor 4 draws with macOS's default blue accent, whatever the Mac is set to.
+# Optional argument: a language code (fr, ja…) to capture that localization into states-<code>.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+LANGUAGE="${1:-en}"
 swift build -c release >/dev/null
+# A bare executable reads its localizations from the folder it sits in.
+cp -R Resources/*.lproj .build/release/
 WORK=$(mktemp -d)
-.build/release/Detour --render-states "$WORK" -AppleAccentColor 4 &
+.build/release/Detour --render-states "$WORK" -AppleAccentColor 4 -AppleLanguages "($LANGUAGE)" &
 APP=$!
 for _ in $(seq 40); do [ -s "$WORK/windows.txt" ] && break; sleep 0.1; done
 OUT=docs/assets/readme-src/states
+[ "$LANGUAGE" = en ] || OUT="$OUT-$LANGUAGE"
 mkdir -p "$OUT"
 while read -r name id; do
     # The window server takes a moment before a new window can be captured.

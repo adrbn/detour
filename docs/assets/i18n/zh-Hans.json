@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["下载 macOS 版", "免费 · macOS 14.2 或更高版本"],
+    "how": ["工作原理", "AirPods 为什么会爆音"],
+    "feedback": ["反馈", "报告 bug 或推荐应用"],
+    "kofi": ["请我喝杯咖啡", "在 Ko-fi 上"]
+  },
+  "cards": {
+    "clean": {"title": "没有爆音", "sub": "从第一个音起就很干净", "bad": "FL Studio 直接用 AirPods", "good": "经过 Detour（实测）", "label": "有爆音的波形变成干净的波形"},
+    "pitch": {"title": "音高准确", "sub": "输入 1 kHz，输出 1000.4 Hz", "label": "调音器的指针准确停在音符上"},
+    "ears": {"title": "摘下再戴上", "sub": "一秒内恢复声音", "label": "AirPods 摘下又戴上，声音随即恢复"},
+    "silent": {"title": "扬声器静音", "sub": "摘下 AirPods 时也一样", "label": "聆听时 Mac 扬声器保持静音"},
+    "menu": {"title": "状态一目了然", "sub": "发送、等待，或提示如何修复", "label": "Detour 菜单：正在发送、等待 FL Studio，然后是附带解决方法的警告"},
+    "apps": {"title": "任意应用", "sub": "默认是 FL Studio", "label": "Detour 菜单中的“应用”选择器依次设为 FL Studio、音乐、Safari"}
+  },
+  "hero": ["FL Studio", "在扬声器上播放", "Mac 扬声器", "已静音", "Detour", "菜单栏应用", "100 毫秒缓冲", "吸收蓝牙的突发读取", "AirPods", "干净，音高准确"],
+  "hero_alt": "FL Studio 的声音离开已静音的 Mac 扬声器，经过 Detour 干净地传到 AirPods"
+}

@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["Scarica per macOS", "Gratis · macOS 14.2 o successivo"],
+    "how": ["Come funziona", "Perché gli AirPods crepitano"],
+    "feedback": ["Feedback", "Segnala un bug o suggerisci un'app"],
+    "kofi": ["Offrimi un caffè", "su Ko-fi"]
+  },
+  "cards": {
+    "clean": {"title": "Niente crepitii", "sub": "Pulito dalla prima nota", "bad": "FL Studio sugli AirPods", "good": "Tramite Detour (misurato)", "label": "Una forma d'onda che crepita diventa pulita"},
+    "pitch": {"title": "L'intonazione giusta", "sub": "Entra 1 kHz, esce 1000,4 Hz", "label": "L'ago di un accordatore si ferma esattamente sulla nota"},
+    "ears": {"title": "Togli e rimetti", "sub": "Il suono torna entro un secondo", "label": "AirPods tolti e rimessi, il suono riprende"},
+    "silent": {"title": "Altoparlanti muti", "sub": "Anche con gli AirPods tolti", "label": "Gli altoparlanti del Mac restano muti mentre ascolti"},
+    "menu": {"title": "Ti dice cosa fa", "sub": "Invio, attesa o cosa sistemare", "label": "Il menu di Detour: invio, attesa di FL Studio, poi un avviso con la soluzione"},
+    "apps": {"title": "Qualsiasi app", "sub": "Predefinita: FL Studio", "label": "La scelta dell'app nel menu di Detour su FL Studio, Music, poi Safari"}
+  },
+  "hero": ["FL Studio", "suona sugli altoparlanti", "Altoparlanti Mac", "muti", "Detour", "app barra dei menu", "Riserva 100 ms", "assorbe scatti Bluetooth", "AirPods", "pulito e intonato"],
+  "hero_alt": "Il suono di FL Studio lascia muti gli altoparlanti del Mac e arriva pulito negli AirPods tramite Detour"
+}

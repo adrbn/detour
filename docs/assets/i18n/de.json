@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["Für macOS herunterladen", "Kostenlos · macOS 14.2 oder neuer"],
+    "how": ["So funktioniert es", "Warum AirPods knistern"],
+    "feedback": ["Feedback", "Fehler melden, App vorschlagen"],
+    "kofi": ["Einen Kaffee spendieren", "auf Ko-fi"]
+  },
+  "cards": {
+    "clean": {"title": "Kein Knistern", "sub": "Sauber ab der ersten Note", "bad": "FL Studio auf AirPods", "good": "Über Detour (gemessen)", "label": "Eine knisternde Wellenform wird sauber"},
+    "pitch": {"title": "Die richtige Tonhöhe", "sub": "1 kHz rein, 1000,4 Hz raus", "label": "Die Nadel eines Stimmgeräts steht genau auf dem Ton"},
+    "ears": {"title": "Raus und wieder rein", "sub": "In einer Sekunde wieder da", "label": "AirPods raus und wieder rein, der Ton läuft weiter"},
+    "silent": {"title": "Stumme Lautsprecher", "sub": "Auch wenn die AirPods raus sind", "label": "Die Mac-Lautsprecher bleiben stumm, während du hörst"},
+    "menu": {"title": "Sagt, was es tut", "sub": "Senden, warten oder die Lösung", "label": "Das Detour-Menü: senden, auf FL Studio warten, dann eine Warnung mit der Lösung"},
+    "apps": {"title": "Jede App", "sub": "Standardmäßig FL Studio", "label": "Die App-Auswahl im Detour-Menü auf FL Studio, Music, dann Safari"}
+  },
+  "hero": ["FL Studio", "läuft auf Lautsprechern", "Mac-Lautsprecher", "stumm", "Detour", "Menüleisten-App", "100-ms-Polster", "puffert Bluetooth-Schübe", "AirPods", "sauber, richtige Tonhöhe"],
+  "hero_alt": "Der Ton von FL Studio verlässt die stummen Mac-Lautsprecher und kommt über Detour sauber in den AirPods an"
+}

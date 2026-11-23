@@ -1,8 +1,9 @@
-"""Writes every SVG of the README: hero (dark + light), buttons, feature cards (en + fr).
+"""Writes every SVG of the README: hero (dark + light), buttons and feature cards, in every language.
 
 Stdlib only. Run from anywhere: python3 docs/assets/make_svgs.py
 Real inputs live in readme-src/: the app icon rendered by Icon Composer, and samples of the
-measured Detour output of a 1 kHz test tone.
+measured Detour output of a 1 kHz test tone. The texts drawn in the images are in i18n/<code>.json;
+English files have no suffix, the others end in -<code> (card-menu-ja.svg).
 """
 import base64, json, math, pathlib
 
@@ -55,6 +56,16 @@ def crackly_wave(n=144):
     return out
 
 
+def text_width(text, size, bold=False):
+    """Rough rendered width: CJK and Hangul are about 1 em wide, other letters about half."""
+    return sum(size if ord(c) >= 0x2E80 else size * (.56 if bold else .47) for c in text)
+
+
+def fit(text, size, max_width, bold=False):
+    """The font size that keeps the text within max_width, never above size."""
+    return round(min(size, size * max_width / text_width(text, size, bold)), 1)
+
+
 def svg(w, h, body, label, defs=""):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
             f'role="img" aria-label="{label}"><defs>{defs}</defs>{body}</svg>')
@@ -62,16 +73,7 @@ def svg(w, h, body, label, defs=""):
 
 # ---------------------------------------------------------------- buttons
 
-BUTTONS = {
-    "download": ("Download for macOS", "Free · macOS 14.2 or later", "down"),
-    "download-fr": ("Télécharger pour macOS", "Gratuit · macOS 14.2 ou plus récent", "down"),
-    "how": ("How it works", "Why AirPods crackle", "info"),
-    "how-fr": ("Comment ça marche", "Pourquoi les AirPods craquent", "info"),
-    "feedback": ("Feedback", "Report a bug or suggest an app", "bubble"),
-    "feedback-fr": ("Vos retours", "Un bug, une app à ajouter", "bubble"),
-    "kofi": ("Buy me a coffee", "on Ko-fi", "cup"),
-    "kofi-fr": ("M'offrir un café", "sur Ko-fi", "cup"),
-}
+BUTTON_GLYPHS = {"download": "down", "how": "info", "feedback": "bubble", "kofi": "cup"}
 GLYPHS = {
     "down": '<circle r="13"/><path d="M0 -6.5V6M-5 1.5L0 6.5L5 1.5"/>',
     "info": '<circle r="13"/><path d="M0 -1V7"/><circle cy="-6" r=".6" fill="currentColor"/>',
@@ -81,7 +83,8 @@ GLYPHS = {
 
 
 def button(title, sub, glyph, primary):
-    w = round(64 + max(len(title) * 10.6, len(sub) * 7.0) + 26)
+    # The small line is medium weight: counted like bold, as the buttons were measured.
+    w = round(64 + max(text_width(title, 19, True), text_width(sub, 12.5, True)) + 26)
     fill = "url(#bg)" if primary else "#1c1c1e"
     accent = "#fff" if primary else ORANGE
     defs = (f'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{ORANGE}"/>'
@@ -104,26 +107,26 @@ CARD_BG = "#161618"
 def card(title, sub, art, label):
     body = (f'<rect width="{CW}" height="{CH}" rx="28" fill="{CARD_BG}"/>'
             f'<rect x=".5" y=".5" width="{CW - 1}" height="{CH - 1}" rx="27.5" fill="none" stroke="#fff" stroke-opacity=".08"/>'
-            f'{art}<g font-family="{FONT}"><text x="36" y="318" font-size="42" font-weight="700" fill="#fff">{title}</text>'
-            f'<text x="36" y="362" font-size="27" fill="#fff" fill-opacity=".62">{sub}</text></g>')
+            f'{art}<g font-family="{FONT}"><text x="36" y="318" font-size="{fit(title, 42, CW - 72, True)}" font-weight="700" fill="#fff">{title}</text>'
+            f'<text x="36" y="362" font-size="{fit(sub, 27, CW - 72)}" fill="#fff" fill-opacity=".62">{sub}</text></g>')
     return svg(CW, CH, body, label)
 
 
-def card_clean(t):
+def card_clean(t, lang):
     """The broken waveform crossfades into the measured clean one, 8 s loop."""
     bad, good = wave(crackly_wave(), 36, 150, 468, 80), wave(clean_wave(), 36, 150, 468, 80)
     fade = 'dur="8s" repeatCount="indefinite" keyTimes="0;.4;.5;.9;1"'
     art = (f'<path d="M36 150 H504" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>'
            f'<g opacity="1"><animate attributeName="opacity" values="1;1;0;0;1" {fade}/>'
            f'<path d="{bad}" fill="none" stroke="#FF5F57" stroke-width="3.5" stroke-linejoin="round"/>'
-           f'<text x="36" y="60" font-family="{FONT}" font-size="26" fill="#FF5F57">{t["bad"]}</text></g>'
+           f'<text x="36" y="60" font-family="{FONT}" font-size="{fit(t["bad"], 26, CW - 72)}" fill="#FF5F57">{t["bad"]}</text></g>'
            f'<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" {fade}/>'
            f'<path d="{good}" fill="none" stroke="{ORANGE}" stroke-width="3.5" stroke-linejoin="round"/>'
-           f'<text x="36" y="60" font-family="{FONT}" font-size="26" fill="{ORANGE}">{t["good"]}</text></g>')
+           f'<text x="36" y="60" font-family="{FONT}" font-size="{fit(t["good"], 26, CW - 72)}" fill="{ORANGE}">{t["good"]}</text></g>')
     return card(t["title"], t["sub"], art, t["label"])
 
 
-def card_pitch(t):
+def card_pitch(t, lang):
     """A tuner needle wobbles, then settles on the note: 9 s loop."""
     cx, cy, r = 270, 250, 170
     ticks = "".join(
@@ -141,7 +144,7 @@ def card_pitch(t):
     return card(t["title"], t["sub"], art, t["label"])
 
 
-def card_ears(t):
+def card_ears(t, lang):
     """Earbuds lift out (the sound stops), drop back in (it resumes): 8 s loop."""
     keys = 'dur="8s" repeatCount="indefinite" keyTimes="0;.25;.35;.6;.7;1" calcMode="spline" keySplines="0 0 1 1;.4 0 .6 1;0 0 1 1;.4 0 .6 1;0 0 1 1"'
     bars = "".join(f'<rect x="{300 + i * 22}" y="{150 - h}" width="12" height="{2 * h}" rx="6" fill="{ORANGE}"/>'
@@ -154,7 +157,7 @@ def card_ears(t):
     return card(t["title"], t["sub"], art, t["label"])
 
 
-def card_silent(t):
+def card_silent(t, lang):
     """The muted Mac speakers on the left, the sound travelling to an earbud on the right."""
     dots = "".join(
         f'<circle cx="200" cy="150" r="7" fill="{ORANGE}" opacity="0"><animate attributeName="cx" values="200;370" dur="2.4s" '
@@ -165,14 +168,15 @@ def card_silent(t):
     return card(t["title"], t["sub"], art, t["label"])
 
 
-def menu_crop(state, part):
+def menu_crop(state, part, lang):
     """A piece of a real capture of the menu (scripts/readme-shots.sh), as a JPEG data URI.
 
     part "status": the switch and the status row; part "pickers": the App and Output rows.
     The rows below the status are the same height in every state, so they are cut from the bottom."""
     from PIL import Image  # image prep only
     import io
-    img = Image.open(SRC / "states" / f"{state}-dark.png").convert("RGB")
+    folder = "states" if lang == "en" else f"states-{lang}"
+    img = Image.open(SRC / folder / f"{state}-dark.png").convert("RGB")
     w, h = img.size
     box = (0, 0, w, h - MENU_BOTTOM) if part == "status" else (0, h - MENU_BOTTOM + 2, w, h - MENU_QUIT)
     out = io.BytesIO()
@@ -202,63 +206,29 @@ def crossfade(shots, y, key, dur=12, fade=.05):
     return out
 
 
-def card_menu(t):
+def card_menu(t, lang):
     """The top of the real menu going through three states: 12 s loop."""
-    shots = [menu_crop(s, "status") for s in ("sending", "waiting-app", "app-on-headphones")]
+    shots = [menu_crop(s, "status", lang) for s in ("sending", "waiting-app", "app-on-headphones")]
     return card(t["title"], t["sub"], crossfade(shots, 30, "menu"), t["label"])
 
 
-def card_apps(t):
+def card_apps(t, lang):
     """The real App and Output pickers with three different apps picked: 12 s loop."""
-    shots = [menu_crop(s, "pickers") for s in ("sending", "sending-music", "sending-safari")]
+    shots = [menu_crop(s, "pickers", lang) for s in ("sending", "sending-music", "sending-safari")]
     return card(t["title"], t["sub"], crossfade(shots, 90, "apps"), t["label"])
 
 
-CARDS = {
-    "clean": (card_clean, {
-        "en": dict(title="No crackles", sub="Clean from the first note", bad="FL Studio on AirPods",
-                   good="Through Detour (measured)", label="A waveform with crackles becomes a clean waveform"),
-        "fr": dict(title="Pas de craquements", sub="Propre dès la première note", bad="FL Studio sur les AirPods",
-                   good="Avec Detour (mesuré)", label="Une forme d'onde qui craque devient propre")}),
-    "pitch": (card_pitch, {
-        "en": dict(title="The right pitch", sub="1 kHz in, 1000.4 Hz out",
-                   label="A tuner needle settles exactly on the note"),
-        "fr": dict(title="La bonne hauteur", sub="1 kHz joué, 1000,4 Hz mesuré",
-                   label="L'aiguille d'un accordeur se pose exactement sur la note")}),
-    "ears": (card_ears, {
-        "en": dict(title="Out and back in", sub="The sound returns within a second",
-                   label="AirPods taken out and put back, the sound resumes"),
-        "fr": dict(title="Retirés, remis", sub="De retour en moins d’une seconde",
-                   label="AirPods retirés puis remis, le son reprend")}),
-    "silent": (card_silent, {
-        "en": dict(title="Silent speakers", sub="Even while your AirPods are out",
-                   label="The Mac speakers stay silent while you listen"),
-        "fr": dict(title="Haut-parleurs muets", sub="Même AirPods retirés",
-                   label="Les haut-parleurs du Mac restent muets pendant l'écoute")}),
-    "menu": (card_menu, {
-        "en": dict(title="Tells you what it's doing", sub="Sending, waiting, or what to fix",
-                   label="The Detour menu: sending, waiting for FL Studio, then a warning with the fix"),
-        "fr": dict(title="Dit ce qu'il fait", sub="Envoie, attend, ou quoi corriger",
-                   label="Le menu de Detour : envoi, attente de FL Studio, puis une alerte avec la solution")}),
-    "apps": (card_apps, {
-        "en": dict(title="Any app", sub="FL Studio by default",
-                   label="The App picker in the Detour menu set to FL Studio, Music, then Safari"),
-        "fr": dict(title="N'importe quelle app", sub="FL Studio par défaut",
-                   label="Le choix de l'app dans le menu de Detour : FL Studio, Music, puis Safari")}),
-}
+CARDS = {"clean": card_clean, "pitch": card_pitch, "ears": card_ears, "silent": card_silent,
+         "menu": card_menu, "apps": card_apps}
 
 
 # ---------------------------------------------------------------- hero
 
-def hero(dark, lang="en"):
+def hero(dark, labels, alt):
     """The signal path: FL Studio, the muted speakers, Detour, the cushion, the AirPods."""
     W, H = 1600, 480
     bg, fg, dim = ("#0d1117", "#ffffff", .55) if dark else ("#ffffff", "#1c1c1e", .6)
     node_bg = "#161b22" if dark else "#f2f2f4"
-    labels = {"en": ("FL Studio", "plays on the speakers", "Mac speakers", "muted", "Detour",
-                     "menu bar app", "100 ms cushion", "absorbs Bluetooth bursts", "AirPods", "clean, right pitch"),
-              "fr": ("FL Studio", "joue sur les haut-parleurs", "Haut-parleurs", "coupés", "Detour",
-                     "barre des menus", "Réserve de 100 ms", "absorbe les à-coups", "AirPods", "propre, bonne hauteur")}[lang]
     y = 190
     # The path the sound travels, with the measured tone moving along it.
     seg = clean_wave(72)
@@ -269,9 +239,24 @@ def hero(dark, lang="en"):
             + "".join(f'<path d="{tone}" transform="translate({x0} {y})" fill="none" stroke="{ORANGE}" stroke-width="3">'
                       f'<animateTransform attributeName="transform" type="translate" from="{x0} {y}" to="{x0 + 320} {y}" '
                       f'dur="4s" repeatCount="indefinite"/></path>' for x0 in (-20, 460, 940)) + '</g>')
+    # Captions sit under five centres; two neighbours that would touch shrink together.
+    centres = [210, 540, 805, 1110, 1400]
+
+    def row_sizes(texts, size, bold):
+        k = [1.0] * len(texts)
+        widths = [text_width(t, size, bold) for t in texts]
+        for i in range(len(texts) - 1):
+            room = centres[i + 1] - centres[i] - 16
+            need = (widths[i] * k[i] + widths[i + 1] * k[i + 1]) / 2
+            if need > room:
+                k[i], k[i + 1] = k[i] * room / need, k[i + 1] * room / need
+        return [round(size * f, 1) if f < 1 else size for f in k]
+    title_sizes = dict(zip(centres, row_sizes(labels[0::2], 34, True)))
+    sub_sizes = dict(zip(centres, row_sizes(labels[1::2], 27, False)))
+
     def caption(x, title, sub):
-        return (f'<text x="{x}" y="{y + 160}" text-anchor="middle" font-size="34" font-weight="700" fill="{fg}">{title}</text>'
-                f'<text x="{x}" y="{y + 200}" text-anchor="middle" font-size="27" fill="{fg}" fill-opacity="{dim}">{sub}</text>')
+        return (f'<text x="{x}" y="{y + 160}" text-anchor="middle" font-size="{title_sizes[x]}" font-weight="700" fill="{fg}">{title}</text>'
+                f'<text x="{x}" y="{y + 200}" text-anchor="middle" font-size="{sub_sizes[x]}" fill="{fg}" fill-opacity="{dim}">{sub}</text>')
 
     def node(x, title, sub, art):
         return (f'<rect x="{x - 110}" y="{y - 110}" width="220" height="220" rx="44" fill="{node_bg}"/>{art}' + caption(x, title, sub))
@@ -291,17 +276,20 @@ def hero(dark, lang="en"):
             + f'<image href="{ICON}" x="{805 - 90}" y="{y - 90}" width="180" height="180"/>'
             + caption(805, labels[4], labels[5])
             + '</g>')
-    return svg(W, H, body, "FL Studio's sound leaves the muted Mac speakers and reaches AirPods clean through Detour")
+    return svg(W, H, body, alt)
 
 
 if __name__ == "__main__":
-    for name, (title, sub, glyph) in BUTTONS.items():
-        (HERE / "buttons" / f"{name}.svg").write_text(button(title, sub, glyph, name.startswith("download")))
-    for name, (make, texts) in CARDS.items():
-        (HERE / f"card-{name}.svg").write_text(make(texts["en"]))
-        (HERE / f"card-{name}-fr.svg").write_text(make(texts["fr"]))
-    (HERE / "hero.svg").write_text(hero(True))
-    (HERE / "hero-light.svg").write_text(hero(False))
-    (HERE / "hero-fr.svg").write_text(hero(True, "fr"))
-    (HERE / "hero-light-fr.svg").write_text(hero(False, "fr"))
-    print("wrote", len(BUTTONS) + 2 * len(CARDS) + 4, "SVGs")
+    count = 0
+    for path in sorted((HERE / "i18n").glob("*.json")):
+        lang, t = path.stem, json.loads(path.read_text())
+        suffix = "" if lang == "en" else f"-{lang}"
+        for name, (title, sub) in t["buttons"].items():
+            (HERE / "buttons" / f"{name}{suffix}.svg").write_text(
+                button(title, sub, BUTTON_GLYPHS[name], name == "download"))
+        for name, make in CARDS.items():
+            (HERE / f"card-{name}{suffix}.svg").write_text(make(t["cards"][name], lang))
+        (HERE / f"hero{suffix}.svg").write_text(hero(True, t["hero"], t["hero_alt"]))
+        (HERE / f"hero-light{suffix}.svg").write_text(hero(False, t["hero"], t["hero_alt"]))
+        count += len(t["buttons"]) + len(CARDS) + 2
+    print("wrote", count, "SVGs")

@@ -13,6 +13,7 @@ swift build -c release -Xswiftc -target -Xswiftc arm64-apple-macos14.2
 rm -rf "$APP" && mkdir -p "$APP/Contents/MacOS"
 cp .build/release/Detour "$APP/Contents/MacOS/Detour"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
+mkdir -p "$APP/Contents/Resources" && cp -R Resources/*.lproj "$APP/Contents/Resources/"
 
 # The icon is an Icon Composer document: actool renders it into Assets.car (Liquid Glass on
 # macOS 26+) plus an AppIcon.icns fallback. actool ships with Xcode 26, not the Command Line Tools.

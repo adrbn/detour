@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["Descargar para macOS", "Gratis · macOS 14.2 o posterior"],
+    "how": ["Cómo funciona", "Por qué crujen los AirPods"],
+    "feedback": ["Comentarios", "Reporta un error o pide una app"],
+    "kofi": ["Invítame a un café", "en Ko-fi"]
+  },
+  "cards": {
+    "clean": {"title": "Sin crujidos", "sub": "Limpio desde la primera nota", "bad": "FL Studio en AirPods", "good": "A través de Detour (medido)", "label": "Una forma de onda con crujidos se vuelve limpia"},
+    "pitch": {"title": "Afinación exacta", "sub": "Entra 1 kHz, salen 1000,4 Hz", "label": "La aguja de un afinador se detiene justo en la nota"},
+    "ears": {"title": "Quítalos y póntelos", "sub": "El sonido vuelve en un segundo", "label": "AirPods que se quitan y se vuelven a poner, el sonido se reanuda"},
+    "silent": {"title": "Altavoces en silencio", "sub": "Incluso con los AirPods fuera", "label": "Los altavoces del Mac siguen en silencio mientras escuchas"},
+    "menu": {"title": "Te dice lo que hace", "sub": "Enviando, esperando o qué hacer", "label": "El menú de Detour: enviando, esperando a FL Studio y luego un aviso con la solución"},
+    "apps": {"title": "Cualquier app", "sub": "FL Studio por defecto", "label": "El selector App del menú de Detour con FL Studio, Music y luego Safari"}
+  },
+  "hero": ["FL Studio", "suena en los altavoces", "Altavoces", "del Mac, silenciados", "Detour", "app de la barra de menús", "100 ms de margen", "absorbe las ráfagas", "AirPods", "limpio y afinado"],
+  "hero_alt": "El sonido de FL Studio sale de los altavoces silenciados del Mac y llega limpio a los AirPods a través de Detour"
+}

@@ -1,0 +1,67 @@
+{
+  "buttons": {
+    "download": [
+      "Télécharger pour macOS",
+      "Gratuit · macOS 14.2 ou plus récent"
+    ],
+    "how": [
+      "Comment ça marche",
+      "Pourquoi les AirPods craquent"
+    ],
+    "feedback": [
+      "Vos retours",
+      "Un bug, une app à ajouter"
+    ],
+    "kofi": [
+      "M'offrir un café",
+      "sur Ko-fi"
+    ]
+  },
+  "cards": {
+    "clean": {
+      "title": "Pas de craquements",
+      "sub": "Propre dès la première note",
+      "bad": "FL Studio sur les AirPods",
+      "good": "Avec Detour (mesuré)",
+      "label": "Une forme d'onde qui craque devient propre"
+    },
+    "pitch": {
+      "title": "La bonne hauteur",
+      "sub": "1 kHz joué, 1000,4 Hz mesuré",
+      "label": "L'aiguille d'un accordeur se pose exactement sur la note"
+    },
+    "ears": {
+      "title": "Retirés, remis",
+      "sub": "De retour en moins d’une seconde",
+      "label": "AirPods retirés puis remis, le son reprend"
+    },
+    "silent": {
+      "title": "Haut-parleurs muets",
+      "sub": "Même AirPods retirés",
+      "label": "Les haut-parleurs du Mac restent muets pendant l'écoute"
+    },
+    "menu": {
+      "title": "Dit ce qu'il fait",
+      "sub": "Envoie, attend, ou quoi corriger",
+      "label": "Le menu de Detour : envoi, attente de FL Studio, puis une alerte avec la solution"
+    },
+    "apps": {
+      "title": "N'importe quelle app",
+      "sub": "FL Studio par défaut",
+      "label": "Le choix de l'app dans le menu de Detour : FL Studio, Music, puis Safari"
+    }
+  },
+  "hero": [
+    "FL Studio",
+    "joue sur les haut-parleurs",
+    "Haut-parleurs",
+    "coupés",
+    "Detour",
+    "barre des menus",
+    "Réserve de 100 ms",
+    "absorbe les à-coups",
+    "AirPods",
+    "propre, bonne hauteur"
+  ],
+  "hero_alt": "Le son de FL Studio quitte les haut-parleurs coupés du Mac et arrive propre dans les AirPods grâce à Detour"
+}

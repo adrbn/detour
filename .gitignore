@@ -1,3 +1,10 @@
 .build/
 build/
 .DS_Store
+# Menu captures in other languages: only the ones the README art uses are kept.
+docs/assets/readme-src/states-*/*
+!docs/assets/readme-src/states-*/sending-dark.png
+!docs/assets/readme-src/states-*/sending-music-dark.png
+!docs/assets/readme-src/states-*/sending-safari-dark.png
+!docs/assets/readme-src/states-*/waiting-app-dark.png
+!docs/assets/readme-src/states-*/app-on-headphones-dark.png

@@ -30,7 +30,7 @@
 
 <p align="center">
   Gratuit et open source · signé et notarisé · macOS 14.2 ou plus récent sur Apple silicon<br>
-  <a href="README.md">English</a> · <b>Français</b>
+  <a href="README.md">English</a> · <b>Français</b> · <a href="README.es.md">Español</a> · <a href="README.de.md">Deutsch</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt-BR.md">Português</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.zh-Hans.md">简体中文</a> · <a href="README.ru.md">Русский</a>
 </p>
 
 ---

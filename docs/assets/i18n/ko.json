@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["macOS용 다운로드", "무료 · macOS 14.2 이상"],
+    "how": ["작동 방식", "AirPods 소리가 튀는 이유"],
+    "feedback": ["피드백", "버그 신고 또는 앱 제안"],
+    "kofi": ["커피 한 잔 사 주기", "Ko-fi에서"]
+  },
+  "cards": {
+    "clean": {"title": "잡음 없음", "sub": "첫 음부터 깨끗하게", "bad": "AirPods로 듣는 FL Studio", "good": "Detour 경유(측정값)", "label": "지직거리던 파형이 깨끗한 파형이 됩니다"},
+    "pitch": {"title": "정확한 음정", "sub": "1 kHz 입력, 1000.4 Hz 출력", "label": "튜너 바늘이 정확히 음에 맞춰 멈춥니다"},
+    "ears": {"title": "뺐다가 다시 끼면", "sub": "1초 안에 소리가 돌아옵니다", "label": "AirPods를 뺐다가 다시 끼면 소리가 다시 나옵니다"},
+    "silent": {"title": "조용한 스피커", "sub": "AirPods를 빼고 있어도", "label": "듣는 동안 Mac 스피커는 조용히 있습니다"},
+    "menu": {"title": "상태를 알려 줍니다", "sub": "전송 중, 대기 중, 해결 방법", "label": "Detour 메뉴: 전송 중, FL Studio 대기 중, 그리고 해결 방법이 담긴 경고"},
+    "apps": {"title": "어떤 앱이든", "sub": "기본값은 FL Studio", "label": "Detour 메뉴의 앱 선택을 FL Studio, 음악, Safari 순으로 바꿉니다"}
+  },
+  "hero": ["FL Studio", "스피커로 재생", "Mac 스피커", "음소거", "Detour", "메뉴 막대 앱", "100 ms 버퍼", "Bluetooth 불규칙성 흡수", "AirPods", "깨끗하고 정확한 음정"],
+  "hero_alt": "FL Studio의 소리가 음소거된 Mac 스피커를 떠나 Detour를 거쳐 AirPods에 깨끗하게 도착합니다"
+}

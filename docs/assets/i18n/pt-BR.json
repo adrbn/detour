@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["Baixar para macOS", "Grátis · macOS 14.2 ou posterior"],
+    "how": ["Como funciona", "Por que os AirPods estalam"],
+    "feedback": ["Feedback", "Relate um bug ou sugira um app"],
+    "kofi": ["Me pague um café", "no Ko-fi"]
+  },
+  "cards": {
+    "clean": {"title": "Sem estalos", "sub": "Limpo desde a primeira nota", "bad": "FL Studio nos AirPods", "good": "Pelo Detour (medido)", "label": "Uma forma de onda com estalos fica limpa"},
+    "pitch": {"title": "A afinação certa", "sub": "Entra 1 kHz, sai 1000,4 Hz", "label": "A agulha de um afinador para exatamente na nota"},
+    "ears": {"title": "Tirar e recolocar", "sub": "O som volta em até um segundo", "label": "AirPods tirados e colocados de volta, o som retorna"},
+    "silent": {"title": "Alto-falantes mudos", "sub": "Mesmo com os AirPods fora", "label": "Os alto-falantes do Mac ficam mudos enquanto você ouve"},
+    "menu": {"title": "Diz o que está fazendo", "sub": "Envio, espera ou o que corrigir", "label": "O menu do Detour: enviando, esperando o FL Studio e depois um alerta com a solução"},
+    "apps": {"title": "Qualquer app", "sub": "FL Studio por padrão", "label": "O seletor App no menu do Detour com FL Studio, Music e depois Safari"}
+  },
+  "hero": ["FL Studio", "toca nos alto-falantes", "Alto-falantes", "do Mac, mudos", "Detour", "app da barra de menus", "Margem de 100 ms", "absorve as rajadas", "AirPods", "limpo e afinado"],
+  "hero_alt": "O som do FL Studio sai dos alto-falantes mudos do Mac e chega limpo aos AirPods pelo Detour"
+}

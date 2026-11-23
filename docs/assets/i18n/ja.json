@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "download": ["macOS版をダウンロード", "無料 · macOS 14.2以降"],
+    "how": ["仕組み", "AirPodsでノイズが出る理由"],
+    "feedback": ["フィードバック", "不具合の報告・アプリの提案"],
+    "kofi": ["コーヒーをおごる", "Ko-fiで"]
+  },
+  "cards": {
+    "clean": {"title": "ノイズなし", "sub": "最初の一音からクリーン", "bad": "FL StudioをAirPodsで", "good": "Detour経由（実測）", "label": "ノイズだらけの波形がクリーンな波形になる"},
+    "pitch": {"title": "正しい音程", "sub": "1 kHz入力、1000.4 Hz出力", "label": "チューナーの針が音程ぴったりに止まる"},
+    "ears": {"title": "外して、着け直す", "sub": "1秒以内に音が戻る", "label": "AirPodsを外して着け直すと、音が戻る"},
+    "silent": {"title": "スピーカーは無音", "sub": "AirPodsを外している間も", "label": "聴いている間、Macのスピーカーは無音のまま"},
+    "menu": {"title": "状態を知らせる", "sub": "送信中、待機中、直すべき点", "label": "Detourのメニュー：送信中、FL Studioを待機中、そして対処法つきの警告"},
+    "apps": {"title": "どのアプリでも", "sub": "デフォルトはFL Studio", "label": "Detourのメニューの「アプリ」をFL Studio、ミュージック、Safariの順に切り替える"}
+  },
+  "hero": ["FL Studio", "スピーカーで再生", "Macスピーカー", "ミュート", "Detour", "メニューバーアプリ", "100 msのバッファ", "Bluetoothの揺らぎを吸収", "AirPods", "クリアで正しい音程"],
+  "hero_alt": "FL Studioの音がミュートされたMacのスピーカーを離れ、Detourを通ってAirPodsにクリーンに届く"
+}

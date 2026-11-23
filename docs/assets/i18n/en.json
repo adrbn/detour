@@ -1,0 +1,67 @@
+{
+  "buttons": {
+    "download": [
+      "Download for macOS",
+      "Free · macOS 14.2 or later"
+    ],
+    "how": [
+      "How it works",
+      "Why AirPods crackle"
+    ],
+    "feedback": [
+      "Feedback",
+      "Report a bug or suggest an app"
+    ],
+    "kofi": [
+      "Buy me a coffee",
+      "on Ko-fi"
+    ]
+  },
+  "cards": {
+    "clean": {
+      "title": "No crackles",
+      "sub": "Clean from the first note",
+      "bad": "FL Studio on AirPods",
+      "good": "Through Detour (measured)",
+      "label": "A waveform with crackles becomes a clean waveform"
+    },
+    "pitch": {
+      "title": "The right pitch",
+      "sub": "1 kHz in, 1000.4 Hz out",
+      "label": "A tuner needle settles exactly on the note"
+    },
+    "ears": {
+      "title": "Out and back in",
+      "sub": "The sound returns within a second",
+      "label": "AirPods taken out and put back, the sound resumes"
+    },
+    "silent": {
+      "title": "Silent speakers",
+      "sub": "Even while your AirPods are out",
+      "label": "The Mac speakers stay silent while you listen"
+    },
+    "menu": {
+      "title": "Tells you what it's doing",
+      "sub": "Sending, waiting, or what to fix",
+      "label": "The Detour menu: sending, waiting for FL Studio, then a warning with the fix"
+    },
+    "apps": {
+      "title": "Any app",
+      "sub": "FL Studio by default",
+      "label": "The App picker in the Detour menu set to FL Studio, Music, then Safari"
+    }
+  },
+  "hero": [
+    "FL Studio",
+    "plays on the speakers",
+    "Mac speakers",
+    "muted",
+    "Detour",
+    "menu bar app",
+    "100 ms cushion",
+    "absorbs Bluetooth bursts",
+    "AirPods",
+    "clean, right pitch"
+  ],
+  "hero_alt": "FL Studio's sound leaves the muted Mac speakers and reaches AirPods clean through Detour"
+}
