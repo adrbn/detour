@@ -63,8 +63,8 @@ Detour leaves FL Studio on the Mac speakers, where it sounds right, silences the
   </tr>
   <tr>
     <td><img src="docs/assets/card-silent.svg" width="100%" alt="The Mac speakers stay silent while you listen"></td>
-    <td><img src="docs/assets/card-menu.svg" width="100%" alt="The Detour menu in the menu bar"></td>
-    <td><img src="docs/assets/card-apps.svg" width="100%" alt="Pick any app that plays sound"></td>
+    <td><img src="docs/assets/card-menu.svg" width="100%" alt="The Detour menu: sending, waiting for FL Studio, then a warning with the fix"></td>
+    <td><img src="docs/assets/card-apps.svg" width="100%" alt="The App picker in the Detour menu set to FL Studio, Music, then Safari"></td>
   </tr>
 </table>
 
@@ -92,7 +92,7 @@ Detour leaves FL Studio on the Mac speakers, where it sounds right, silences the
 3. Open Detour. When macOS asks, allow it under **System Settings › Privacy & Security › Screen & System Audio Recording**.
 4. Put your AirPods in and press play in FL Studio.
 
-The headphones icon in the menu bar fills in when sound is going to your AirPods.
+The headphones in the menu bar show a small clock while Detour waits and a warning mark when something needs you. Plain headphones mean the sound is going to your AirPods.
 
 ## How it works
 

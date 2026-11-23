@@ -63,8 +63,8 @@ Detour laisse FL Studio sur les haut-parleurs du Mac, où il sonne juste, coupe 
   </tr>
   <tr>
     <td><img src="docs/assets/card-silent-fr.svg" width="100%" alt="Les haut-parleurs du Mac restent muets pendant l'écoute"></td>
-    <td><img src="docs/assets/card-menu-fr.svg" width="100%" alt="Le menu de Detour dans la barre des menus"></td>
-    <td><img src="docs/assets/card-apps-fr.svg" width="100%" alt="Choisir n'importe quelle app qui joue du son"></td>
+    <td><img src="docs/assets/card-menu-fr.svg" width="100%" alt="Le menu de Detour : envoi, attente de FL Studio, puis une alerte avec la solution"></td>
+    <td><img src="docs/assets/card-apps-fr.svg" width="100%" alt="Le choix de l'app dans le menu de Detour : FL Studio, Music, puis Safari"></td>
   </tr>
 </table>
 
@@ -92,7 +92,7 @@ Detour laisse FL Studio sur les haut-parleurs du Mac, où il sonne juste, coupe 
 3. Ouvrez Detour. Quand macOS le demande, autorisez-le dans **Réglages Système › Confidentialité et sécurité › Enregistrement de l'écran et de l'audio du système**.
 4. Mettez vos AirPods et lancez la lecture dans FL Studio.
 
-L'icône de casque dans la barre des menus se remplit quand le son part vers vos AirPods.
+Le casque de la barre des menus porte une petite horloge quand Detour attend et une marque d'alerte quand il a besoin de vous. Un casque seul signifie que le son part vers vos AirPods.
 
 ## Comment ça marche
 

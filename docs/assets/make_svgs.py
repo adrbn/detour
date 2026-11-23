@@ -165,6 +165,55 @@ def card_silent(t):
     return card(t["title"], t["sub"], art, t["label"])
 
 
+def menu_crop(state, part):
+    """A piece of a real capture of the menu (scripts/readme-shots.sh), as a JPEG data URI.
+
+    part "status": the switch and the status row; part "pickers": the App and Output rows.
+    The rows below the status are the same height in every state, so they are cut from the bottom."""
+    from PIL import Image  # image prep only
+    import io
+    img = Image.open(SRC / "states" / f"{state}-dark.png").convert("RGB")
+    w, h = img.size
+    box = (0, 0, w, h - MENU_BOTTOM) if part == "status" else (0, h - MENU_BOTTOM + 2, w, h - MENU_QUIT)
+    out = io.BytesIO()
+    img.crop(box).save(out, "JPEG", quality=86)
+    return "data:image/jpeg;base64," + base64.b64encode(out.getvalue()).decode(), box[2] - box[0], box[3] - box[1]
+
+
+MENU_BOTTOM, MENU_QUIT = 224, 78  # px at 2x: from the status divider down, and the Quit row
+
+
+def crossfade(shots, y, key, dur=12, fade=.05):
+    """Real captures shown one after the other, top-aligned and centred, with a short crossfade."""
+    n, out = len(shots), ""
+    for i, (href, w, h) in enumerate(shots):
+        k = (CW - 72) / w
+        start, end = i / n, (i + 1) / n
+        if i == 0:
+            times, values = [0, end - fade, end, 1 - fade, 1], "1;1;0;0;1"
+        elif i == n - 1:
+            times, values = [0, start - fade, start, 1 - fade, 1], "0;0;1;1;0"
+        else:
+            times, values = [0, start - fade, start, end - fade, end, 1], "0;0;1;1;0;0"
+        out += (f'<g opacity="{1 if i == 0 else 0}"><animate attributeName="opacity" values="{values}" '
+                f'keyTimes="{";".join(f"{t:.3f}" for t in times)}" dur="{dur}s" repeatCount="indefinite"/>'
+                f'<clipPath id="{key}{i}"><rect x="36" y="{y}" width="{w * k:.0f}" height="{h * k:.0f}" rx="18"/></clipPath>'
+                f'<image href="{href}" x="36" y="{y}" width="{w * k:.0f}" height="{h * k:.0f}" clip-path="url(#{key}{i})"/></g>')
+    return out
+
+
+def card_menu(t):
+    """The top of the real menu going through three states: 12 s loop."""
+    shots = [menu_crop(s, "status") for s in ("sending", "waiting-app", "app-on-headphones")]
+    return card(t["title"], t["sub"], crossfade(shots, 30, "menu"), t["label"])
+
+
+def card_apps(t):
+    """The real App and Output pickers with three different apps picked: 12 s loop."""
+    shots = [menu_crop(s, "pickers") for s in ("sending", "sending-music", "sending-safari")]
+    return card(t["title"], t["sub"], crossfade(shots, 90, "apps"), t["label"])
+
+
 CARDS = {
     "clean": (card_clean, {
         "en": dict(title="No crackles", sub="Clean from the first note", bad="FL Studio on AirPods",
@@ -186,6 +235,16 @@ CARDS = {
                    label="The Mac speakers stay silent while you listen"),
         "fr": dict(title="Haut-parleurs muets", sub="Même AirPods retirés",
                    label="Les haut-parleurs du Mac restent muets pendant l'écoute")}),
+    "menu": (card_menu, {
+        "en": dict(title="Tells you what it's doing", sub="Sending, waiting, or what to fix",
+                   label="The Detour menu: sending, waiting for FL Studio, then a warning with the fix"),
+        "fr": dict(title="Dit ce qu'il fait", sub="Envoie, attend, ou quoi corriger",
+                   label="Le menu de Detour : envoi, attente de FL Studio, puis une alerte avec la solution")}),
+    "apps": (card_apps, {
+        "en": dict(title="Any app", sub="FL Studio by default",
+                   label="The App picker in the Detour menu set to FL Studio, Music, then Safari"),
+        "fr": dict(title="N'importe quelle app", sub="FL Studio par défaut",
+                   label="Le choix de l'app dans le menu de Detour : FL Studio, Music, puis Safari")}),
 }
 
 
