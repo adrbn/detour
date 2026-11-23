@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-light.svg">
-  <img src="docs/assets/hero.svg" width="100%" alt="FL Studio joue sur un Mac. Son audio laisse les haut-parleurs muets et arrive propre dans des AirPods, via l'icône Detour de la barre des menus.">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/hero-light-fr.svg">
+  <img src="docs/assets/hero-fr.svg" width="100%" alt="FL Studio joue sur un Mac. Son audio laisse les haut-parleurs muets et arrive propre dans des AirPods, via l'icône Detour de la barre des menus.">
 </picture>
 
 <p align="center">
@@ -21,11 +21,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/macOS-14.2%2B-0A84FF?style=flat-square&logo=apple&logoColor=white&labelColor=1c1c1e" alt="macOS 14.2 ou plus récent">
-  <img src="https://img.shields.io/badge/Apple%20silicon-natif-0A84FF?style=flat-square&labelColor=1c1c1e" alt="Natif sur Apple silicon">
-  <a href="https://github.com/adrbn/detour/releases/latest"><img src="https://img.shields.io/github/v/release/adrbn/detour?style=flat-square&label=version&color=0A84FF&labelColor=1c1c1e" alt="Dernière version"></a>
-  <img src="https://img.shields.io/badge/r%C3%A9seau-aucun-0A84FF?style=flat-square&labelColor=1c1c1e" alt="Aucune requête réseau">
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-0A84FF?style=flat-square&labelColor=1c1c1e" alt="Licence MIT"></a>
+  <img src="https://img.shields.io/badge/macOS-14.2%2B-E8590C?style=flat-square&logo=apple&logoColor=white&labelColor=1c1c1e" alt="macOS 14.2 ou plus récent">
+  <img src="https://img.shields.io/badge/Apple%20silicon-natif-E8590C?style=flat-square&labelColor=1c1c1e" alt="Natif sur Apple silicon">
+  <a href="https://github.com/adrbn/detour/releases/latest"><img src="https://img.shields.io/github/v/release/adrbn/detour?style=flat-square&label=version&color=E8590C&labelColor=1c1c1e" alt="Dernière version"></a>
+  <img src="https://img.shields.io/badge/r%C3%A9seau-aucun-E8590C?style=flat-square&labelColor=1c1c1e" alt="Aucune requête réseau">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-E8590C?style=flat-square&labelColor=1c1c1e" alt="Licence MIT"></a>
 </p>
 
 <p align="center">
@@ -57,14 +57,14 @@ Detour laisse FL Studio sur les haut-parleurs du Mac, où il sonne juste, coupe 
 
 <table>
   <tr>
-    <td><img src="docs/assets/card-clean.svg" width="100%" alt="Une forme d'onde qui craque devient propre"></td>
-    <td><img src="docs/assets/card-pitch.svg" width="100%" alt="L'aiguille d'un accordeur se pose exactement sur la note"></td>
-    <td><img src="docs/assets/card-ears.svg" width="100%" alt="AirPods retirés puis remis, le son reprend"></td>
+    <td><img src="docs/assets/card-clean-fr.svg" width="100%" alt="Une forme d'onde qui craque devient propre"></td>
+    <td><img src="docs/assets/card-pitch-fr.svg" width="100%" alt="L'aiguille d'un accordeur se pose exactement sur la note"></td>
+    <td><img src="docs/assets/card-ears-fr.svg" width="100%" alt="AirPods retirés puis remis, le son reprend"></td>
   </tr>
   <tr>
-    <td><img src="docs/assets/card-silent.svg" width="100%" alt="Les haut-parleurs du Mac restent muets pendant l'écoute"></td>
-    <td><img src="docs/assets/card-menu.svg" width="100%" alt="Le menu de Detour dans la barre des menus"></td>
-    <td><img src="docs/assets/card-apps.svg" width="100%" alt="Choisir n'importe quelle app qui joue du son"></td>
+    <td><img src="docs/assets/card-silent-fr.svg" width="100%" alt="Les haut-parleurs du Mac restent muets pendant l'écoute"></td>
+    <td><img src="docs/assets/card-menu-fr.svg" width="100%" alt="Le menu de Detour dans la barre des menus"></td>
+    <td><img src="docs/assets/card-apps-fr.svg" width="100%" alt="Choisir n'importe quelle app qui joue du son"></td>
   </tr>
 </table>
 

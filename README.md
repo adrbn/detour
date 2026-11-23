@@ -21,11 +21,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/macOS-14.2%2B-0A84FF?style=flat-square&logo=apple&logoColor=white&labelColor=1c1c1e" alt="macOS 14.2 or later">
-  <img src="https://img.shields.io/badge/Apple%20silicon-native-0A84FF?style=flat-square&labelColor=1c1c1e" alt="Native on Apple silicon">
-  <a href="https://github.com/adrbn/detour/releases/latest"><img src="https://img.shields.io/github/v/release/adrbn/detour?style=flat-square&label=release&color=0A84FF&labelColor=1c1c1e" alt="Latest release"></a>
-  <img src="https://img.shields.io/badge/network-none-0A84FF?style=flat-square&labelColor=1c1c1e" alt="Makes no network requests">
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-0A84FF?style=flat-square&labelColor=1c1c1e" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/macOS-14.2%2B-E8590C?style=flat-square&logo=apple&logoColor=white&labelColor=1c1c1e" alt="macOS 14.2 or later">
+  <img src="https://img.shields.io/badge/Apple%20silicon-native-E8590C?style=flat-square&labelColor=1c1c1e" alt="Native on Apple silicon">
+  <a href="https://github.com/adrbn/detour/releases/latest"><img src="https://img.shields.io/github/v/release/adrbn/detour?style=flat-square&label=release&color=E8590C&labelColor=1c1c1e" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/network-none-E8590C?style=flat-square&labelColor=1c1c1e" alt="Makes no network requests">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-E8590C?style=flat-square&labelColor=1c1c1e" alt="MIT license"></a>
 </p>
 
 <p align="center">
